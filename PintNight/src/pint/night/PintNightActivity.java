@@ -104,15 +104,13 @@ public class PintNightActivity extends Activity implements OnTabChangeListener{
         }catch (IOException a){
         	
         }
-      //  fillListViewString();
+
         calendar_list = (ListView)findViewById(R.id.ListView01);
         calendar_list.setAdapter(new ArrayAdapter<String>(this, R.layout.list_item, beerListArray)); 
                 
         
         upcoming_browser=(WebView)findViewById(R.id.upcoming);
         upcoming_browser.loadUrl("http://schmidtcds.com/pintnight/v2/upcoming2.php");
-     //   calendar_browser=(WebView)findViewById(R.id.calendar);
-     //   calendar_browser.loadUrl("http://schmidtcds.com/pintnight/v2/pintcalendar2.php");
         collection_browser=(WebView)findViewById(R.id.collection);
         collection_browser.loadUrl("http://ad.leadboltads.net/show_app_wall?section_id=504415991");
       
@@ -183,19 +181,7 @@ public class PintNightActivity extends Activity implements OnTabChangeListener{
 		}	
     	
     }
-  /*  public void fillListViewString(){
-    		
-    		Iterator<PintNightEvent> eventsIterator = pintNightEvents.listIterator();
-    		try {
-    			while(eventsIterator.hasNext()){
-    				beerList.add(eventsIterator.next().getBeer());
-    			}
-    		} catch (IndexOutOfBoundsException a){
-    			
-    		}
-    		beerListArray = new String[beerList.size()];
-    		beerList.toArray(beerListArray);
-    	}*/
+
     
 }
 
