@@ -10,6 +10,7 @@ private String beer;
 private String abv;
 private String description;
 private String notes;
+private String url;
 private Elements pint;
 
 public PintNightEvent(Element pintNight){
@@ -19,6 +20,7 @@ public PintNightEvent(Element pintNight){
 	abv = pint.get(4).text();
 	description = pint.get(6).text();
 	notes = pint.get(8).text();
+	url = "<a href=\"" + "http://www.google.com/search?btnI=1&as_sitesearch=beeradvocate.com&q=" + beer + "\">" + "More Info" + "<a>";
 }
 
 public PintNightEvent(){
@@ -27,6 +29,7 @@ public PintNightEvent(){
 	abv = "n/a";
 	description = "n/a";
 	notes = "n/a";
+	url = "n/a";
 }
 
 public String toString(){
@@ -40,8 +43,8 @@ public String toString(){
 	return invalidFieldsRemoved.replace("-", "\n  ");
 	}
 
-public String moreInfo(){
-	return "<a href=\"" + "http://www.google.com/search?btnI=1&as_sitesearch=beeradvocate.com&q=" + beer + "\">" + "More Info" + "<a>";
+public String getMoreInfo(){
+	return url;
 }
 
 public String getDate(){
