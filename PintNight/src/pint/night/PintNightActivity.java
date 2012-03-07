@@ -17,13 +17,10 @@ package pint.night;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Iterator;
 
 import android.app.Activity;
 
-
 import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
 
 import org.jsoup.select.Elements;
 import org.jsoup.Jsoup;
@@ -57,7 +54,6 @@ public class PintNightActivity extends Activity implements OnTabChangeListener{
     WebView collection_browser;
     ListView calendar_list;
     
-   // PintNightEvent pintNightEvents[];
 
     
     private List<PintNightEvent> pintNightEvents = new ArrayList<PintNightEvent>(10);
@@ -102,7 +98,7 @@ public class PintNightActivity extends Activity implements OnTabChangeListener{
         try{
         	parseCalender();
         }catch (IOException a){
-        	
+        	testAlert(a.toString());
         }
 
         calendar_list = (ListView)findViewById(R.id.ListView01);
@@ -167,13 +163,14 @@ public class PintNightActivity extends Activity implements OnTabChangeListener{
     		PintNightEvent event = new PintNightEvent();
     		for(int k = 0; k < events.size(); k++){
     			event = new PintNightEvent(events.get(k));
-    			//testAlert(Integer.toString(events.size()));
+    			pintNightEvents.add(event);
     			beerList.add(event.toString());
     		}	
     		beerListArray = new String[beerList.size()];
     		beerList.toArray(beerListArray);
     		
     	} catch (IOException a) { 	
+    		testAlert(a.toString());
     	} catch (IndexOutOfBoundsException a) {
     		testAlert(a.toString());
 		} catch (NullPointerException a) {
