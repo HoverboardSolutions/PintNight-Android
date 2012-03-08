@@ -28,6 +28,7 @@ import org.jsoup.Jsoup;
 import android.app.AlertDialog;
 import android.content.res.Resources;
 import android.webkit.WebView;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.content.*;
 //import android.view.Menu;
@@ -53,6 +54,8 @@ public class PintNightActivity extends Activity implements OnTabChangeListener{
     WebView calendar_browser;
     WebView collection_browser;
     ListView calendar_list;
+   protected InitTask initTask;
+    
     
 
     
@@ -101,15 +104,22 @@ public class PintNightActivity extends Activity implements OnTabChangeListener{
         upcoming_browser.loadUrl("http://schmidtcds.com/pintnight/v2/upcoming2.php");
         collection_browser=(WebView)findViewById(R.id.collection);
         collection_browser.loadUrl("http://ad.leadboltads.net/show_app_wall?section_id=504415991");
-      
-        try{
+        
+        calendar_list = (ListView)findViewById(R.id.ListView01);
+        
+        initTask = new InitTask();
+        initTask.execute(this);
+       	 
+        
+        
+        /*try{
         	parseCalender();
         }catch (IOException a){
         	testAlert(a.toString());
-        }
-
-        calendar_list = (ListView)findViewById(R.id.ListView01);
-        calendar_list.setAdapter(new ArrayAdapter<String>(this, R.layout.list_item, beerListArray)); 
+        }*/
+       
+        
+        
 
 
         
@@ -119,6 +129,11 @@ public class PintNightActivity extends Activity implements OnTabChangeListener{
     public void onTabChanged(String tabId) {
     	if(tabId.equals("collection")){
             showInDevelopmentAlert();
+            } else if(tabId.equals("tag2")){
+            	while(initTask.getStatus() == AsyncTask.Status.RUNNING){
+            		//Wait until init task has completed
+            	}
+    			calendar_list.setAdapter(new ArrayAdapter<String>(this, R.layout.list_item, beerListArray)); 
             }
     	
     }
@@ -178,7 +193,25 @@ public class PintNightActivity extends Activity implements OnTabChangeListener{
 		}	
     	
     }
+    protected class InitTask extends AsyncTask<Context, Integer, Boolean>{
 
+		@Override
+		protected Boolean doInBackground(Context... params) {
+			 try{
+		        	parseCalender();
+		        	return true;
+		        }catch (IOException a){
+		        	testAlert(a.toString());
+		        	return false;
+		        }
+		}
+		
+		@Override
+		protected void onPostExecute( Boolean result )  {
+		      super.onPostExecute(result);
+		}
+    	
+    }
     
 }
 
