@@ -56,9 +56,9 @@ public class PintNightActivity extends Activity implements OnTabChangeListener{
     
 
     
-    private List<PintNightEvent> pintNightEvents = new ArrayList<PintNightEvent>(10);
-    private ArrayList<String> beerList=new ArrayList<String>();	
-    private String[] beerListArray;
+    protected List<PintNightEvent> pintNightEvents = new ArrayList<PintNightEvent>(10);
+    protected ArrayList<String> beerList=new ArrayList<String>();	
+    protected String[] beerListArray;
     public PintNightActivity() {
     }
 
@@ -95,6 +95,13 @@ public class PintNightActivity extends Activity implements OnTabChangeListener{
         tabs.addTab(spec);
         
         tabs.setOnTabChangedListener(this);
+                       
+        
+        upcoming_browser=(WebView)findViewById(R.id.upcoming);
+        upcoming_browser.loadUrl("http://schmidtcds.com/pintnight/v2/upcoming2.php");
+        collection_browser=(WebView)findViewById(R.id.collection);
+        collection_browser.loadUrl("http://ad.leadboltads.net/show_app_wall?section_id=504415991");
+      
         try{
         	parseCalender();
         }catch (IOException a){
@@ -103,14 +110,7 @@ public class PintNightActivity extends Activity implements OnTabChangeListener{
 
         calendar_list = (ListView)findViewById(R.id.ListView01);
         calendar_list.setAdapter(new ArrayAdapter<String>(this, R.layout.list_item, beerListArray)); 
-                
-        
-        upcoming_browser=(WebView)findViewById(R.id.upcoming);
-        upcoming_browser.loadUrl("http://schmidtcds.com/pintnight/v2/upcoming2.php");
-        collection_browser=(WebView)findViewById(R.id.collection);
-        collection_browser.loadUrl("http://ad.leadboltads.net/show_app_wall?section_id=504415991");
-      
-        
+
 
         
     }
