@@ -14,22 +14,23 @@ private String url;
 private Elements pint;
 
 public PintNightEvent(Element pintNight){
-	pint = pintNight.getElementsByTag("font");
-    date = pint.get(0).text();
-	beer = pint.get(2).text();
-	abv = pint.get(4).text();
-	description = pint.get(6).text();
-	notes = pint.get(8).text();
-	url = "<a href=\"" + "http://www.google.com/search?btnI=1&as_sitesearch=beeradvocate.com&q=" + beer + "\">" + "More Info" + "<a>";
+	this.pint = pintNight.getElementsByTag("font");
+    this.date = pint.get(0).text();
+	this.beer = pint.get(2).text();
+	this.abv = pint.get(4).text();
+	this.description = pint.get(6).text();
+	this.notes = pint.get(8).text();
+	this.url = "<a href=\"" + "http://www.google.com/search?btnI=1&as_sitesearch=beeradvocate.com&q=" + beer + "\">" + "More Info" + "<a>";
 }
 
 public PintNightEvent(){
-    date = "n/a";
-	beer = "n/a";
-	abv = "n/a";
-	description = "n/a";
-	notes = "n/a";
-	url = "n/a";
+	this.pint = new Elements();
+	this.date = "n/a";
+	this.beer = "n/a";
+	this.abv = "n/a";
+	this.description = "n/a";
+	this.notes = "n/a";
+	this.url = "n/a";
 }
 
 public String toString(){
