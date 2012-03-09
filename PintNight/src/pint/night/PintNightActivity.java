@@ -27,6 +27,7 @@ import org.jsoup.Jsoup;
 
 import android.app.AlertDialog;
 import android.content.res.Resources;
+import android.view.View;
 import android.webkit.WebView;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -37,10 +38,14 @@ import android.content.*;
 //import android.view.View.OnClickListener;
 //import android.widget.Button;
 //import android.widget.EditText;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TabHost;
 import android.widget.TabHost.OnTabChangeListener;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.ads.*;
 
@@ -134,6 +139,17 @@ public class PintNightActivity extends Activity implements OnTabChangeListener{
             		//Wait until init task has completed
             	}
     			calendar_list.setAdapter(new ArrayAdapter<String>(this, R.layout.list_item, beerListArray)); 
+    			calendar_list.setOnItemClickListener(new OnItemClickListener() {
+    	            @Override
+    	            public void onItemClick(AdapterView<?> parent, View view, int position,
+    	                    long id) {
+    	                
+    	                String item = ((TextView)view).getText().toString();
+    	                
+    	                Toast.makeText(getBaseContext(), Integer.toString(position), Toast.LENGTH_LONG).show();
+    	                
+    	            }
+    	        });
             }
     	
     }
