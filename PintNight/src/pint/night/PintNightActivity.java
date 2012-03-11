@@ -29,6 +29,7 @@ import android.app.AlertDialog;
 import android.content.res.Resources;
 import android.view.View;
 import android.webkit.WebView;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.content.*;
@@ -144,9 +145,10 @@ public class PintNightActivity extends Activity implements OnTabChangeListener{
     	            public void onItemClick(AdapterView<?> parent, View view, int position,
     	                    long id) {
     	                
-    	                String item = ((TextView)view).getText().toString();
-    	                
-    	                Toast.makeText(getBaseContext(), Integer.toString(position), Toast.LENGTH_LONG).show();
+    	                String item = pintNightEvents.get(position).getMoreInfo();
+    	                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(item));
+    	                startActivity(browserIntent);
+    	               
     	                
     	            }
     	        });
