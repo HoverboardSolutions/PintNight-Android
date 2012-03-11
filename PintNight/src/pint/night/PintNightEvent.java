@@ -20,7 +20,7 @@ public PintNightEvent(Element pintNight){
 	this.abv = pint.get(4).text();
 	this.description = pint.get(6).text();
 	this.notes = pint.get(8).text();
-	this.url = "<a href=\"" + "http://www.google.com/search?btnI=1&as_sitesearch=beeradvocate.com&q=" + beer + "\">" + "More Info" + "<a>";
+	this.url = "http://www.google.com/search?btnI=1&as_sitesearch=beeradvocate.com&q=" + beer;
 }
 
 public PintNightEvent(){
